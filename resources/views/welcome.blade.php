@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Laravel Daraja</title>
 </head>
 <body>
@@ -26,7 +27,7 @@
                         Register URL's
                     </div>
                     <div class="card-body">
-                        <button class="btn btn-info">Register URLs</button>
+                        <button id="registerURLS" class="btn btn-info">Register URLs</button>
                     </div>
                 </div>
                 <div class="card mt-3">
@@ -60,13 +61,24 @@
      
         axios.post('/get-token',{})
         .then((response)=>{
-            document.getElementById('accessToken').innerHTML=response.data.access_token
+            document.getElementById('accessToken').innerHTML=response.data
         })
         .catch((err)=>{
             console.log(err)
         })
         })
         
+        document.getElementById('registerURLS').addEventListener('click',(event)=>{
+            event.preventDefault()
+            axios.post('register-urls',{})
+            .then((response)=>{
+                console.log(response)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        })
+
 </script>
 
 </body>
