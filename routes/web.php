@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::post('get-token',[MpesaController::class,'getAccessToken']);
+Route::post('register-urls',[MpesaController::class,'registerUrls']);
