@@ -9,12 +9,12 @@ class MpesaResponsesController extends Controller
 {
     //
     public function validation(Request $request){
-        Log::info('validation endpoint hit');
+        Log::info('Validation endpoint hit!');
         Log::info($request->all());
     }
 
     public function confirmation(Request $request){
-        Log::info('confirmation endpoint hit');
+        Log::info('Confirmation endpoint hit!');
         Log::info($request->all());
     }
 }

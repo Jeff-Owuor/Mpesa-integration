@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MpesaResponses;
+use App\Http\Controllers\MpesaResponsesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +15,7 @@ use App\Http\Controllers\MpesaResponses;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-Route::post('validation/msape',[MpesaResponses::class,'validation']);
-Route::post('confirmation/msape',[MpesaResponses::class,'confirmation']);
+
+Route::post('validation',[MpesaResponsesController::class,'validation']);
+Route::post('confirmation',[MpesaResponsesController::class,'confirmation']);
