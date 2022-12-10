@@ -24,7 +24,7 @@ class MpesaController extends Controller
     }
 
     public function makeHttp($url,$body){
-        $curl = curl_init();
+        $curl = curl_init($url);
         curl_setopt_array(
             $curl,
             array(
@@ -35,19 +35,21 @@ class MpesaController extends Controller
                 CURLOPT_POSTFIELDS => json_encode($body),
             )    
           );
+          $curl_response = curl_exec($curl);
+          curl_close($curl);
+          return $curl_response;
 
     }
 
     public function registerUrls(){
         $body = array(
             'ShortCode' => env('MPESA_SHORT_CODE'),
-            'ResponseType' => 'completed',
-            'ConfirmationURL' => env('MPESA_TEST_URL').'/api/confirmation/msape',
-            'ValidationURL' => env('MPESA_TEST_URL').'/api/validation/msape',
+            'ResponseType' => 'Completed',
+            'ConfirmationURL' => env('MPESA_TEST_URL').'/api/confirmation',
+            'ValidationURL' => env('MPESA_TEST_URL').'/api/validation',
         );
 
         $response = $this->makeHttp('https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl',$body);
-
         return $response;
     }
 
