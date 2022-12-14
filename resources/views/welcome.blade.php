@@ -27,6 +27,9 @@
                         Register URL's
                     </div>
                     <div class="card-body">
+                        <div id="response" class="mb-2 text-success">
+                            
+                        </div>
                         <button id="registerURLS" class="btn btn-info">Register URLs</button>
                     </div>
                 </div>
@@ -72,7 +75,11 @@
             event.preventDefault()
             axios.post('register-urls',{})
             .then((response)=>{
-                console.log(response)
+                if(response.data.ResponseDescription){
+                    document.getElementById('response').innerHTML = response.data.ResponseDescription
+                }else{
+                    document.getElementById('response').innerHTML = response.data.errorMessage
+                }
             })
             .catch((err)=>{
                 console.log(err)
