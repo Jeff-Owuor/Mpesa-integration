@@ -48,7 +48,7 @@
                                 <label for="account">Account</label>
                                 <input type="text" name="account" class="form-control" id="account">
                             </div>
-                            <button class="btn btn-info mt-3">Simulate</button>
+                            <button id="simulate" class="btn btn-info mt-3">Simulate</button>
                         </form>
                     </div>
                 </div>
@@ -84,6 +84,23 @@
             .catch((err)=>{
                 console.log(err)
             })
+        })
+
+        document.getElementById('simulate').addEventListener('click',(event)=>{
+            event.preventDefault();
+            const requestBody = {
+                amount: document.getElementById('amount').value,
+                account: document.getElementById('account').value
+            }
+
+            axios.post('/simulate',requestBody)
+            .then((response)=>{
+                console.log(response.data)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+
         })
 
 </script>
