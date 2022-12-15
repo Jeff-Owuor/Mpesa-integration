@@ -53,4 +53,23 @@ class MpesaController extends Controller
         return $response;
     }
 
+    public function  simulateTransaction(Request $request)
+    {
+        $body = array(
+            'ShortCode' => env('MPESA_SHORT_CODE'),
+            'Msisdn' => env('MPESA_TEST_MSIMDN'),
+            'Amount' => $request->amount,
+            'BilRefNumber' => $request->account,
+            'CommandID' => 'CustomerPayBillOnline'
+
+        );
+
+        $url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
+
+        $response = $this->makeHttp($url,$body);
+
+        return $response;
+        
+    }
+
 }
